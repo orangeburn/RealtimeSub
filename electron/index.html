@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src ws://127.0.0.1:27000;">
+  <title>实时字幕</title>
+  <style>
+    body {
+      background-color: transparent;
+      margin: 0;
+      font-size: 24px;
+      color: white;
+      text-align: center;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="subtitle">等待字幕...</div>
+  <script src="renderer.js"></script>
+</body>
+</html>
