@@ -65,7 +65,7 @@ npm start
 
 ## 鸣谢
 
-- [SenseVoice](https://github.com/alibaba-damo-academy/SenseVoice)：本项目使用的ASR模型核心，由阿里巴巴达摩院开源
+- [SenseVoice](https://github.com/FunAudioLLM/SenseVoice/tree/main)：本项目使用的ASR模型核心，由阿里巴巴达摩院开源
 - [api4sensevoice](https://github.com/0x5446/api4sensevoice)：基于SenseVoice的WebSocket服务实现
 
 ## 许可证
