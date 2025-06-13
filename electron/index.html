@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src ws://127.0.0.1:27000 http://localhost:11434;">
+  <title>实时字幕</title>
+  <style>
+    html, body {
+      background-color: rgba(0, 0, 0, 0.5);
+      margin: 0;
+      font-size: 24px;
+      color: white;
+      text-align: center;
+      font-family: sans-serif;
+      min-height: 100vh;
+      min-width: 640px;
+      overflow-x: hidden;
+    }
+
+    #top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      gap: 12px;
+    }
+
+    #lang-select {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    #lang-select label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+    }
+
+    #lang-select select {
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 5px;
+      border: 1px solid #888;
+    }
+
+    .mode-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mode-buttons button {
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background-color: #eee;
+      color: #000;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mode-buttons button.active {
+      background-color: #1a73e8;
+      color: white;
+      font-weight: bold;
+    }
+
+    #subtitle, #translation {
+      max-width: 90%;
+      margin: 140px auto 10px auto;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    #subtitle {
+      color: white;
+    }
+
+    #translation {
+      color: #ffff88;
+    }
+
+    .subtitle {
+      text-shadow: 1px 1px 2px black;
+    }
+
+    #status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      background: none;
+    }
+
+    #status-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #f44336;
+      border-radius: 50%;
+      animation: pulse 1.4s infinite alternate;
+    }
+
+    #status-dot.connected {
+      background-color: #4caf50;
+    }
+
+    #close-button {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    #close-button:hover {
+      color: #f44336;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="top-bar">
+    <div id="status-indicator">
+      <span id="status-dot"></span>
+      <span id="status-text">连接中...</span>
+    </div>
+    <div id="lang-select">
+      <label>翻译语言:
+        <select id="tgtLang"></select>
+      </label>
+    </div>
+    <div class="mode-buttons">
+      <button id="btn-original">原声字幕</button>
+      <button id="btn-translated">翻译字幕</button>
+      <button id="btn-both">双字幕</button>
+    </div>
+    <button id="close-button" onclick="window.close()">🔴 关闭</button>
+  </div>
+
+  <div id="subtitle" class="subtitle">原声字幕……</div>
+  <div id="translation" class="subtitle">翻译字幕……</div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
