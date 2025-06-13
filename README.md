@@ -12,8 +12,6 @@
 
 ---
 
----
-
 ## 🆕 更新内容
 
 - 支持接入 nllb200 多语言模型，实现字幕实时翻译。
@@ -104,7 +102,7 @@ npm start
 
 本项目未在仓库中直接存储大模型文件（如 nllb-200-distilled-600M-ct2-int8 下的 model.bin 等），请按如下方式获取和恢复：
 
-1. 访问 [官方模型发布页](https://github.com/facebookresearch/fairseq/tree/main/examples/nllb) 或项目作者提供的下载链接，下载所需模型文件。
+1. 访问 [官方模型发布页](https://huggingface.co/facebook/nllb-200-distilled-600M) 下载所需模型文件。
 2. 将下载的模型文件（如 model.bin、sentencepiece.bpe.model、tokenizer.json）放入 `nllb-200-distilled-600M-ct2-int8/` 目录下。
 3.  **注意：** 模型大文件已被 `.gitignore` 排除，需单独下载到本地。
 
