@@ -2,11 +2,21 @@
 
 > 🎙️ 一款基于 [SenseVoice](https://github.com/FunAudioLLM/SenseVoice) 的本地实时字幕系统，支持系统音频捕获、语音识别与字幕浮窗显示，适用于会议记录、实时翻译、直播字幕等场景。
 
+---
+
+## 🆕 更新内容
+
+- 支持接入 nllb200 多语言模型，实现字幕实时翻译。
+- 优化依赖管理，项目已排除 venv、node_modules 等依赖目录和大文件，远程仓库仅包含源码和配置。
+- 增加大文件本地恢复说明，便于用户快速部署模型。
+
+---
+
 ## 🔧 项目简介
 
 **Realtime Caption** 是一个运行于 Windows 平台的本地实时字幕工具，支持从系统音频中实时提取语音内容，通过大模型进行自动语音识别（ASR），并将字幕以悬浮窗形式实时呈现。适用于想要本地部署、安全私有化使用实时语音识别的用户。
 
-本项目基于开源语音模型 **SenseVoice**，结合 Python 后端和 Electron 前端构建完整工作流，无需依赖云服务。
+本项目基于开源语音模型 **SenseVoice**，结合 Python 后端和 Electron 前端构建完整工作流，无需依赖云服务。现已支持 nllb200 多语言模型，可实现实时字幕翻译。
 
 ---
 
@@ -79,13 +89,21 @@ npm start
 
 ---
 
-## 🧩 依赖要求
+## 📦 大文件管理与模型恢复
 
-* Windows 10/11 系统
-* Python 3.10+
-* Node.js 14+
-* NVIDIA GPU（推荐用于模型推理）
-* 安装 [VC++ Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist)（若未安装）
+本项目未在仓库中直接存储大模型文件（如 nllb-200-distilled-600M-ct2-int8 下的 model.bin 等），请按如下方式获取和恢复：
+
+1. 访问 [官方模型发布页](https://github.com/facebookresearch/fairseq/tree/main/examples/nllb) 或项目作者提供的下载链接，下载所需模型文件。
+2. 将下载的模型文件（如 model.bin、sentencepiece.bpe.model、tokenizer.json）放入 `nllb-200-distilled-600M-ct2-int8/` 目录下。
+3.  **注意：** 模型大文件已被 `.gitignore` 排除，需单独下载到本地。
+
+---
+
+## 🧩 依赖管理说明
+
+- **Python 依赖**：请使用 `requirements.txt` 安装，虚拟环境（如 venv、torch-env）不会纳入版本控制。
+- **Node.js 依赖**：请在 `electron/` 目录下运行 `npm install`，`node_modules` 目录不会纳入版本控制。
+- **模型文件**：需手动下载或本地恢复，避免仓库存储大文件。
 
 ---
 
@@ -98,8 +116,4 @@ npm start
 
 ## 📜 许可证
 
-<<<<<<< HEAD
 本项目采用 [MIT License](./LICENSE) 开源。
-=======
-本项目采用 [MIT License](./LICENSE) 开源。
->>>>>>> 94be3ff (chore: 补交所有变更，准备 rebase/push)
